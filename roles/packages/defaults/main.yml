@@ -8,6 +8,7 @@ packages:
   - ansible-lint
   - git
   - jq
+  - docker.io
 
 pip_packages:
   - yamllint

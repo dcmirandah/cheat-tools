@@ -33,3 +33,48 @@
     src: /opt/venv/bin/pre-commit
     dest: /usr/local/bin/pre-commit
     state: link
+
+- name: Install k3s
+  ansible.builtin.shell:
+    cmd: curl -sfL https://get.k3s.io | sh -
+  args:
+    creates: /usr/local/bin/k3s
+
+- name: Adjust permissions for k3s kubeconfig
+  ansible.builtin.file:
+    path: /etc/rancher/k3s/k3s.yaml
+    mode: '0644'
+    owner: root
+    group: root
+  become: true
+
+- name: Get the latest stable version of kubectl
+  ansible.builtin.shell:
+    cmd: curl -L -s https://dl.k8s.io/release/stable.txt
+  register: kubectl_version
+
+- name: Install kubectl
+  ansible.builtin.get_url:
+    url: "https://dl.k8s.io/release/{{ kubectl_version.stdout }}/bin/linux/amd64/kubectl"
+    dest: /usr/local/bin/kubectl
+    mode: '0755'
+
+- name: Install Helm
+  ansible.builtin.get_url:
+    url: https://get.helm.sh/helm-v3.12.0-linux-amd64.tar.gz
+    dest: /tmp/helm.tar.gz
+
+- name: Extract Helm binary
+  ansible.builtin.unarchive:
+    src: /tmp/helm.tar.gz
+    dest: /usr/local/bin/
+    remote_src: yes
+    extra_opts: --strip-components=1
+  args:
+    creates: /usr/local/bin/helm
+
+- name: Ensure Docker service is started
+  ansible.builtin.service:
+    name: docker
+    state: started
+    enabled: yes
