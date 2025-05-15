@@ -1,0 +1,6 @@
+---
+- name: Set GNOME window button layout
+  ansible.builtin.dconf:
+    key: "/org/gnome/desktop/wm/preferences/button_layout"
+    value: "'{{ button_layout }}'"
+    state: present

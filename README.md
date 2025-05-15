@@ -1,71 +1,43 @@
 # Cheat Tools
 
-This repository contains a collection of utility scripts designed to streamline and enhance daily workflows.
+## Table of Contents
 
-## Scripts
+- [Overview](#overview)
+- [Features](#features)
+- [Installation](#installation)
+- [Contributing](#contributing)
 
-### fmt.sh
+## Overview
 
-The `fmt.sh` script provides a menu-driven interface to validate, format, and manage pre-commit hooks for Terraform and Terragrunt projects.
+Cheat Tools is an ansible playbook and a collectionof scripts designed to simplify and enhance productivity on my daily activities.
 
-**Features**
+## Features
 
-- Pre-commit Validation: Runs all pre-commit checks across files.
-- Pre-commit Installation: Installs the necessary pre-commit hooks.
-- Pre-commit Update: Updates pre-commit hooks to their latest versions.
-- Terraform/Terragrunt Formatting: Ensures proper code formatting using terraform fmt and terragrunt hclfmt.
+- Handy scripts for common tasks.
+- Tools to automate repetitive processes. Explore the available tools in the [cheat-tools](cheat-tools/readme.md) directory.
+- Bash aliases and utilities. Explore the [configurations](configurations) directory.
+- Easy-to-use and customizable.
 
-#### Usage:
-```bash
-./fmt.sh
-```
+## Installation
 
-### open.sh
+1. Clone the repository:
 
-The `open.sh` script provides an interactive way to browse directories and open them in Visual Studio Code. It organizes projects in a two-level folder structure and allows users to navigate and select a directory efficiently.
+    ```bash
+    git clone https://github.com/dcmirandah/cheat-tools.git
+    ```
 
-**Features**
+2. Navigate to the project directory:
 
-- Interactive Folder Selection: Uses a menu system to browse directories.
-- Two-Level Navigation: First, select a top-level directory, then choose a subdirectory inside it.
-- VS Code Integration: Opens the selected directory in Visual Studio Code.
+    ```bash
+    cd cheat-tools
+    ```
 
-#### Usage:
+3. Deploy
 
-```bash
-./open.sh
-```
+    ```bash
+    ./run.sh
+    ```
 
-### reset_git_history.sh
-
-The `reset_git_history.sh` script resets a Git repository's history by creating a new orphan branch and force-pushing it to the remote repository.
-
-**Features**
-
-- Creates a new orphan branch, removing all previous commit history.
-- Adds all files to the new branch and commits them.
-- Deletes the old main branch and renames the new one.
-- Force pushes the new main branch to the remote repository.
-
-#### Usage:
-
-```bash
-./reset_git_history.sh
-```
-
-## Requirements
-
-- Terraform / Terragrunt installed (for fmt.sh)
-- Visual Studio Code (code command in $PATH, for open.sh)
-- Git installed and configured (for reset_git_history.sh)
-
-## Contribution
+## Contributing
 
 Feel free to contribute by submitting a pull request! 🚀
-
-
-
-
-
-
-

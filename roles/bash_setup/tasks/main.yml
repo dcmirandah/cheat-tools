@@ -1,0 +1,22 @@
+---
+- name: Ensure ~/.cheat-tools directory exists
+  ansible.builtin.file:
+    path: "{{ cheat_tools_dest}}"
+    state: directory
+    mode: '0755'
+
+- name: Deploy shell cheat tools scripts to ~/.cheat-tools
+  ansible.builtin.copy:
+    src: "{{ cheat_tools_src }}"
+    dest: "{{ cheat_tools_dest }}"
+    mode: '0755'
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+
+- name: Deploy .bashrc template
+  ansible.builtin.template:
+    src: "{{ bashrc_src }}"
+    dest: "{{ bashrc_dest }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'

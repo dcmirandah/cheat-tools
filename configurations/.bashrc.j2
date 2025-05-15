@@ -1,0 +1,65 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+################
+# User defined #
+################
+
+# User specific aliases
+alias branches='git checkout develop; git branch | grep -v "develop"'
+alias branches-clean='git checkout develop; git branch | grep -v "develop" | xargs git branch -D; git fetch -p && git branch -vv | awk "/: gone]/{print $1}" | xargs git branch -d; sleep 2; git pull'
+alias docs='terraform-docs markdown . --output-file readme.md'
+alias docs-new='terraform-docs markdown . --output-file readme-new.md'
+alias ll='ls -alF --color=auto'
+alias open='{{ cheat_tools_dest }}/open.sh'
+alias fmt='{{ cheat_tools_dest }}/fmt.sh'
+
+# Enables tab-completion for the 'k' alias using kubectl's completion function
+complete -F __start_kubectl k
+
+# Enable vi mode for command line editing
+set -o vi
+
+# Enable autocd (Change directory by typing the directory name)
+shopt -s autocd
+
+# Enable command auto-completion
+if ! shopt -oq posix; then
+  # Enable Bash completion
+  if [ -f /etc/bash_completion ]; then
+      . /etc/bash_completion
+  fi
+fi
+
+# Git branch + dirty indicator
+git_info() {
+  local branch dirty=""
+  branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+  if [[ -n "$branch" ]]; then
+    [[ -n $(git status --porcelain 2>/dev/null) ]] && dirty="*"
+    echo -e " (\e[32m${branch}${dirty}\e[0m)"
+  fi
+}
+
+# Get last part of the path (e.g. current directory only)
+short_pwd() {
+  echo "${PWD##*/}"
+}
+
+# Build prompt dynamically
+set_prompt() {
+  PS1="\[\e[34m\]\A\[\e[0m\] \[\e[36m\]\u@\h\[\e[0m\]:\[\e[33m\]\$(short_pwd)\[\e[0m\]\$(git_info) \$ "
+}
+
+PROMPT_COMMAND=set_prompt

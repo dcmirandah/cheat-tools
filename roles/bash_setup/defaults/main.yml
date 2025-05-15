@@ -1,0 +1,5 @@
+cheat_tools_dest: "{{ ansible_env.HOME }}/.cheat-tools"
+cheat_tools_src: "{{ playbook_dir }}/cheat-tools/"
+
+bashrc_src: "{{ playbook_dir }}/configurations/.bashrc.j2"
+bashrc_dest: "{{ ansible_env.HOME }}/.bashrc"

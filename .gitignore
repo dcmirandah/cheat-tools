@@ -1,0 +1,26 @@
+# Ansible related files
+*.retry
+*.log
+
+# Inventory
+inventory/
+
+# SSH private keys
+*.pem
+*.key
+
+# Vault passwords
+.vault_pass
+
+# Ansible facts cache
+~/.ansible/
+
+# Python virtual environments
+venv/
+.env/
+
+# Temporary files
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
