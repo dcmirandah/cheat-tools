@@ -16,6 +16,7 @@ Cheat Tools is an ansible playbook and a collectionof scripts designed to simpli
 - Handy scripts for common tasks.
 - Tools to automate repetitive processes. Explore the available tools in the [cheat-tools](cheat-tools/readme.md) directory.
 - Bash aliases and utilities. Explore the [configurations](configurations) directory.
+- Packages installation for Infrastructure as Code.
 - Easy-to-use and customizable.
 
 ## Installation
