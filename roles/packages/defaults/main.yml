@@ -1,0 +1,14 @@
+snap_packages:
+  - terraform-docs
+  - terragrunt
+  - tflint
+
+packages:
+  - ansible
+  - ansible-lint
+  - git
+  - jq
+
+pip_packages:
+  - yamllint
+  - pre-commit

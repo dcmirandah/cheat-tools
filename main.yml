@@ -3,5 +3,12 @@
   hosts: localhost
   become: false
   roles:
-    - { role: bash_setup, tags: bash }
-    - { role: gnome_setup, tags: gnome }
+    - role: bash_setup
+      tags: bash }
+    - role: gnome_setup
+      tags: gnome
+      when: ansible_facts['os_family'] == 'RedHat'
+    - role: packages
+      tags: packages
+      become: true
+      when: ansible_facts['os_family'] == 'Debian'
