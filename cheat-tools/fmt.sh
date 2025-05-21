@@ -35,7 +35,7 @@ case $option in
   4)
     echo "Validating Terraform/Terragrunt files..."
     terraform fmt --recursive
-    terragrunt hclfmt -recursive
+    terragrunt hclfmt -- recursive
     ;;
   5)
     echo "Checking YAML syntax and style..."
